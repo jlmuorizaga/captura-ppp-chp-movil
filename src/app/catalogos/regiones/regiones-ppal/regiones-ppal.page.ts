@@ -16,7 +16,7 @@ import {filter} from 'rxjs/operators';
   templateUrl: './regiones-ppal.page.html',
   styleUrls: ['./regiones-ppal.page.scss'],
   standalone: true,
-  imports: [SharedModule,IonBackButton, IonButtons, IonContent, 
+  imports: [SharedModule,IonBackButton,IonButton,IonList,IonItem,IonLabel, IonButtons, IonContent, 
     IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
 })
 export class RegionesPpalPage implements OnInit,OnDestroy {
