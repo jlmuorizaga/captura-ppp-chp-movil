@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonButtons,
    IonButton, IonIcon, IonBackButton, IonList, 
   IonLabel, IonItem, 
-  AlertController} from '@ionic/angular/standalone';
+  AlertController, IonGrid, IonCol, IonRow } from '@ionic/angular/standalone';
 import { SharedModule } from 'src/app/shared/shared/shared.module';
 import {Region} from 'src/app/model/dto/region';
 import { RegionService } from 'src/app/services/region.service';
@@ -16,7 +16,7 @@ import {filter} from 'rxjs/operators';
   templateUrl: './regiones-ppal.page.html',
   styleUrls: ['./regiones-ppal.page.scss'],
   standalone: true,
-  imports: [SharedModule,IonBackButton,IonButton,IonList,IonItem,IonLabel, IonButtons, IonContent, 
+  imports: [IonRow, IonCol, IonGrid, SharedModule,IonBackButton,IonButton,IonList,IonItem,IonLabel, IonButtons, IonContent, 
     IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
 })
 export class RegionesPpalPage implements OnInit,OnDestroy {
