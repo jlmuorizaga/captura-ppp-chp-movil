@@ -3,33 +3,33 @@ import { CommonModule } from '@angular/common';
 import { IonicModule} from '@ionic/angular'
 import { FormGroup, FormBuilder, Validators, ReactiveFormsModule }
   from '@angular/forms';
-import {IonButton, IonInput,
-  IonGrid,IonRow,IonCol,IonBackButton} from '@ionic/angular/standalone'
+import {IonHeader, IonButton, IonInput,IonToolbar,IonTitle,IonButtons,IonBackButton,IonGrid,IonRow,IonCol} from '@ionic/angular/standalone'
 import { Region } from 'src/app/model/dto/region';
 import { RegionService } from 'src/app/services/region.service';
 import { Router } from '@angular/router';
 import { SharedModule } from 'src/app/shared/shared/shared.module';
-   
+
 @Component({
   selector: 'app-insertar-region',
   templateUrl: './insertar-region.page.html',
   styleUrls: ['./insertar-region.page.scss'],
   standalone: true,
   imports: [ReactiveFormsModule, IonicModule, CommonModule, 
-    IonButton, IonBackButton,IonInput,IonGrid,IonRow,IonCol,SharedModule
+    IonHeader, IonButton, IonInput,IonToolbar,IonTitle,IonButtons,IonBackButton,IonGrid,IonRow,IonCol,SharedModule
   ]
 })
 export class InsertarRegionPage  {
   formularioRegion: FormGroup;
 
-  constructor(private fb: FormBuilder,private regionesSvc:RegionService,private router: Router) { 
+  constructor(private fb: FormBuilder,private regionesSvc:RegionService,private router: Router) {
     this.formularioRegion = this.fb.group({
       idRegion: ['', Validators.required],
       nombreRegion: ['', Validators.required]
     })
-    }
+  }
 
- 
+  
+
   insertaRegion() {
     if (this.formularioRegion.valid) {
       console.log(this.formularioRegion.value)
@@ -52,8 +52,8 @@ export class InsertarRegionPage  {
 
     }
 
-  } 
+  }
   saltaARegiones() {
-    this.router.navigateByUrl('/regiones-ppal');
+    this.router.navigateByUrl('/regiones');
   }  
 }
