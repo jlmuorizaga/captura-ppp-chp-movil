@@ -1,44 +1,45 @@
-import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { SharedModule } from './../../../shared/shared/shared.module';
+import { ChangeDetectorRef,Component, OnInit,OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonButtons,
-   IonButton, IonIcon, IonBackButton, IonList, 
-  IonLabel, IonItem, 
-  AlertController, IonGrid, IonCol, IonRow } from '@ionic/angular/standalone';
-import { SharedModule } from 'src/app/shared/shared/shared.module';
-import {Region} from 'src/app/model/dto/region';
-import { RegionService } from 'src/app/services/region.service';
-import { NavigationEnd, Router } from '@angular/router';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonButtons, IonIcon, IonButton, 
+  IonBackButton, IonList, IonItem, IonLabel,AlertController } from '@ionic/angular/standalone';
 import { Subscription } from 'rxjs';
+import { RegionService } from 'src/app/services/region.service';
+import { Region } from 'src/app/model/dto/region';
 import {filter} from 'rxjs/operators';
+import { NavigationEnd, Router } from '@angular/router';
+
 @Component({
   selector: 'app-regiones-ppal',
   templateUrl: './regiones-ppal.page.html',
   styleUrls: ['./regiones-ppal.page.scss'],
   standalone: true,
-  imports: [IonRow, IonCol, IonGrid, SharedModule,IonBackButton,IonButton,IonList,IonItem,IonLabel, IonButtons, IonContent, 
-    IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
+  imports: [SharedModule,IonLabel, IonItem, IonList, IonBackButton, IonButton, IonIcon, 
+    IonButtons, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
 })
-export class RegionesPpalPage implements OnInit,OnDestroy {
-  navigationSubscription: Subscription;
+export class RegionesPpalPage implements OnInit, OnDestroy {
+  navigationSubscription:Subscription;
   regiones!:Region[];
-  mensaje: string;
+  mensaje:string;
 
   constructor(private regionesSvc:RegionService,
     private alertController:AlertController,
-    private router: Router,private cdr: ChangeDetectorRef) { 
-      this.mensaje = 'Estoy en el constructor';
-
-      this.navigationSubscription = this.router.events
+    private router: Router,private cdr: ChangeDetectorRef 
+  ) { 
+    this.mensaje = 'Estoy en el constructor';
+    this.navigationSubscription = this.router.events
       .pipe(filter(event => event instanceof NavigationEnd))
       .subscribe(() => {
         this.leerRegiones();
-      }); 
-    }
+      });
+
+  }
 
   ngOnInit() {
     console.log('Entré a regiones en OnInit');
   }
+  
   ngOnDestroy(): void {
     if (this.navigationSubscription) {
       this.navigationSubscription.unsubscribe();
@@ -111,7 +112,7 @@ export class RegionesPpalPage implements OnInit,OnDestroy {
 
     await alert.present();
 
-  }
+  }  
   saltaAInsertarRegion() {
     this.router.navigateByUrl('/insertar-region');
   }  
